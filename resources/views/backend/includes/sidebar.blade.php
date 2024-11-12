@@ -66,20 +66,12 @@
                    </a>
                    <div class="collapse" id="sidebarProducts">
                         <ul class="nav sub-navbar-nav">
-                             <li class="sub-nav-item">
-                                  <a class="sub-nav-link" href="{{ route('admin.products.list') }}">List</a>
-                             </li>
-                             <li class="sub-nav-item">
-                                <a class="sub-nav-link" href="{{ route('admin.products.create') }}">Create</a>
+                            <li class="sub-nav-item">
+                                <a class="sub-nav-link" href="{{ route('admin.products.list') }}">Products</a>
                            </li>
-
-
-                             <li class="sub-nav-item">
-                                  {{-- <a class="sub-nav-link" href="{{ route('admin.products.details') }}">Details</a> --}}
-                             </li>
-                             <li class="sub-nav-item">
-                                  {{-- <a class="sub-nav-link" href="{{ route('admin.products.edit') }}">Edit</a> --}}
-                             </li>
+                            <li class="sub-nav-item">
+                                <a class="sub-nav-link" href="{{ route('admin.products.create') }}">Products Create</a>
+                           </li>
 
                         </ul>
                    </div>
@@ -98,12 +90,6 @@
                    </a>
                    <div class="collapse" id="sidebarCategory">
                         <ul class="nav sub-navbar-nav">
-                            <li class="sub-nav-item">
-                                <a class="sub-nav-link" href="{{ route('admin.products.list') }}">Products</a>
-                           </li>
-                            <li class="sub-nav-item">
-                                <a class="sub-nav-link" href="{{ route('admin.products.create') }}">Products Create</a>
-                           </li>
                              <li class="sub-nav-item">
                                   <a class="sub-nav-link" href="{{ route('admin.category.list') }}">Categories</a>
                              </li>

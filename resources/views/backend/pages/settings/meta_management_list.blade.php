@@ -50,16 +50,19 @@
                                           {{-- -----Meta Start--------- --}}
                                         <div class="tab-content pt-2 text-muted">
                                             <div class="tab-pane" id="homeTabsJustified">
-                                                <textarea class="form-control bg-light-subtle" rows="15" name="meta_start" placeholder="Top Meta Section">{{ $metaManagement->meta_start }}</textarea>
+                                                <textarea class="form-control bg-light-subtle" rows="15" name="meta_start" placeholder="Top Meta Section"> @if (isset($metaManagement->meta_start)){!! $metaManagement->meta_start !!}
+                                                    @endif</textarea>
 
                                             </div>
                                              {{-- -----Meta End--------- --}}
                                             <div class="tab-pane show active" id="profileTabsJustified">
-                                                <textarea class="form-control bg-light-subtle" rows="15" name="meta_end" placeholder="End Meta Section">{{ $metaManagement->meta_end }}</textarea>
+                                                <textarea class="form-control bg-light-subtle" rows="15" name="meta_end" placeholder="End Meta Section">@if (isset($metaManagement->meta_end)){!! $metaManagement->meta_end !!}
+                                                    @endif</textarea>
                                             </div>
                                              {{-- -----Body Start--------- --}}
                                             <div class="tab-pane" id="messagesTabsJustified">
-                                                <textarea class="form-control bg-light-subtle" rows="15" name="body_start" placeholder="Starting Body Section">{{ $metaManagement->body_start }}</textarea>
+                                                <textarea class="form-control bg-light-subtle" rows="15" name="body_start" placeholder="Starting Body Section">@if (isset($metaManagement->body_start)){!! $metaManagement->body_start !!}
+                                                    @endif</textarea>
                                             </div>
                                         </div>
 

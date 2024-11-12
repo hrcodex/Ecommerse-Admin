@@ -4,6 +4,10 @@
 <style>
     #preview {
        width: 200px;
+       height: 50px;
+    }
+    #preview-2 {
+       width: 200px;
        height: 90px;
     }
  </style>
@@ -58,7 +62,12 @@
                             <div class="col-lg-6">
                             <div class="mb-3">
 
+                                @if ($slider->type =='Desktop')
                                 <img id="preview" class="rounded" src="{{ asset($slider->image) }}" alt="Preview Image">
+                                    @else
+                                    <img id="preview-2" class="rounded" src="{{ asset($slider->image) }}" alt="Preview Image">
+                                @endif
+
 
                              </div>
                             </div>
@@ -92,6 +101,18 @@
                                </div>
 
                             </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="product-brand" class="form-label">Type <i class="fa fa-star text-blue" aria-hidden="true"></i></label>
+                                   <select class="form-control" name="type" >
+                                    <option value="" disabled>---Select Status---</option>
+                                    <option value="Mobile" @if ($slider->type =='Mobile') selected @endif>Mobile</option>
+                                    <option value="Desktop" @if ($slider->type =='Desktop') selected @endif>Desktop</option>
+                               </select>
+                               </div>
+
+                            </div>
+
                         </div>
 
                         {{-- //Attribute Section --}}

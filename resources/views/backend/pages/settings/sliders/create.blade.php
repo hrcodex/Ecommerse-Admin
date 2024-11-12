@@ -81,6 +81,18 @@
                                 </div>
 
                             </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="product-brand" class="form-label">Type <i class="fa fa-star text-blue"
+                                            aria-hidden="true"></i></label>
+                                    <select class="form-control" id="choices-single-no-search" name="type"
+                                        data-choices data-choices-search-false>
+                                        <option value="Mobile" selected>Mobile</option>
+                                        <option value="Desktop">Desktop</option>
+                                    </select>
+                                </div>
+
+                            </div>
                         </div>
 
                         {{-- //Attribute Section --}}

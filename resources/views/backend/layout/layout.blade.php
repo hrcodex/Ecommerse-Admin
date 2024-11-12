@@ -6,7 +6,10 @@
 
 <!-- Mirrored from techzaa.in/larkon/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Oct 2024 19:06:24 GMT -->
 <head>
+    @if (isset($metaManagement->meta_start))
     {!! $metaManagement->meta_start !!}
+    @endif
+
      <!-- Title Meta -->
   @include('backend.includes.meta')
      <title>@yield('title')</title>
@@ -15,12 +18,17 @@
      @include('backend.includes.style')
      @yield('style')
 
+     @if (isset($metaManagement->meta_end))
      {!! $metaManagement->meta_end !!}
+     @endif
+
 
 </head>
 
 <body>
+    @if (isset($metaManagement->body_start))
     {!! $metaManagement->body_start !!}
+    @endif
      <!-- START Wrapper -->
      <div class="wrapper">
 

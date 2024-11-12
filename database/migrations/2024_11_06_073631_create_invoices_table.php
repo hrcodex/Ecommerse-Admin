@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_id', length: 100)->nullable();
+            $table->bigInteger('order_id');
             $table->timestamps();
         });
     }

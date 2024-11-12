@@ -111,8 +111,10 @@ class ProductController extends Controller
         ]);
         //update Brand
         $brand  = Brand::where('id', $table->brand_id)->first();
-        $brand->products = $brand->products + 1;
-        $brand->save();
+        if (isset($brand)) {
+            $brand->products = $brand->products + 1;
+            $brand->save();
+        }
 
 
         // Prepare Image----------------------------Start

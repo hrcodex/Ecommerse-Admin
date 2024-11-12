@@ -31,6 +31,7 @@ class SliderController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'status' => ['required', 'string'],
+            'type' => ['required', 'string'],
             'image' => ['required', 'mimes:jpeg,jpg,png,svg', 'image'],
 
         ]);
@@ -52,12 +53,13 @@ class SliderController extends Controller
         }
 
         // Prepare Image----------------------------End
-        //insert category
+        //insert Slider
         $table = new Slider();
         $table->name = $request->name;
         $table->image = $imageUrl;
         $table->description = $request->description;
         $table->status = $request->status;
+        $table->type = $request->type;
         $table->admin = Auth::user()->id;
         $table->save();
 
@@ -128,11 +130,12 @@ class SliderController extends Controller
             $imageUrl = $slider->image;
         }
 
-        //update  category table
+        //update  slider table
         $slider->name = $request->name;
         $slider->image = $imageUrl;
         $slider->description = $request->description;
         $slider->status = $request->status;
+        $slider->type = $request->type;
         $slider->admin = Auth::user()->id;
         $slider->save();
 

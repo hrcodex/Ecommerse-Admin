@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->string('description')->nullable();
             $table->string('status', length: 60)->default('published');
+            $table->string('type', length: 60)->default('mobile');
             $table->tinyInteger('admin')->nullable();
             $table->timestamps();
         });

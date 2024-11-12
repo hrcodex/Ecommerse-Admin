@@ -35,7 +35,7 @@
 
                                     <th>Slider</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Type</th>
                                     <th>Created_AT</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -60,7 +60,7 @@
 
                                     </td>
                                     <td>{{ $slider->name }}</td>
-                                    <td>{!! $slider->description !!}</td>
+                                    <td>{{  $slider->type  }}</td>
                                     <td>
                                         <p>{{ $slider->created_at->format('d-M-Y'); }}</p>
                                     </td>
