@@ -79,6 +79,7 @@ class ProductController extends Controller
         $table->category_id = ($request->category_id);
         $table->description = ($request->description);
         $table->status = ($request->status);
+        $table->is_featured = ($request->is_featured);
         $table->atr_Colors = ($request->atr_Colors);
         $table->atr_Wide =  ($request->atr_Wide);
         $table->atr_Size =  ($request->atr_Size);
@@ -235,6 +236,7 @@ class ProductController extends Controller
         $table->image = $imageUrl;
         $table->category_id = ($request->category_id);
         $table->status = ($request->status);
+        $table->is_featured = ($request->is_featured);
         $table->atr_Colors = ($request->atr_Colors); //
         $table->atr_Wide =  ($request->atr_Wide); //
         $table->atr_Size =  ($request->atr_Size); //

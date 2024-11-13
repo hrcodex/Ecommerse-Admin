@@ -6,6 +6,7 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\FaqController;
 use App\Http\Controllers\backend\GalleryController;
 use App\Http\Controllers\backend\GeneralSettingController;
+use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\backend\SliderController;
@@ -43,18 +44,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Order
     Route::prefix('orders')->name('orders.')->group(function () {
 
-        Route::get('list', function () {
-            return view('backend.pages.orders.list');
-        })->name('list');
-        Route::get('details', function () {
-            return view('backend.pages.orders.details');
-        })->name('details');
-        Route::get('cart', function () {
-            return view('backend.pages.orders.cart');
-        })->name('cart');
-        Route::get('cheakout', function () {
-            return view('backend.pages.orders.cheakout');
-        })->name('cheakout');
+        Route::get('list', [OrderController::class, 'index'])->name('list');
+        Route::get('details', [OrderController::class, 'details'])->name('details');
+        Route::get('cart', [OrderController::class, 'cart'])->name('cart');
+        Route::get('cheakout', [OrderController::class, 'cheakout'])->name('cheakout');
     });
 
     // Product

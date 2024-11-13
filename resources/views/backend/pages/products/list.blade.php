@@ -40,7 +40,7 @@
                                             <th>SL</th>
                                             <th>Products</th>
                                             <th>Price</th>
-                                            <th>Stock</th>
+                                            <th>Best Selling</th>
                                             <th>Orders</th>
                                             <th>Created AT</th>
                                             <th>Status</th>
@@ -68,7 +68,17 @@
 
                                             </td>
                                             <td>{{ $product->sale_price }} TK</td>
-                                            <td> <p class="text-success">{{ $product->stock_status }}</p> </td>
+
+                                            <td>
+                                                @if ($product->is_featured == 1)
+                                                <h4><span class="badge bg-success">Active</span></h4>
+                                                @else
+                                                <h4><span class="badge bg-warning">InActive</span></h4>
+                                                @endif
+
+                                           </td>
+
+
                                             <td> <p>{{ $product->order }}</p></td>
                                             <td> <p>{{ $product->created_at->format('d-M-Y'); }}</p></td>
                                             <td>

@@ -47,7 +47,7 @@ class SliderController extends Controller
             $img_row = $request->file('image');
             $img_name = $firstname . '_' . hexdec(uniqid()) . '.' . $img_row->getClientOriginalExtension();
             $image = $manager->read($img_row); // read image from file system
-            $image = $image->resize(700, 354); //Image Dimention
+            // $image = $image->resize(700, 354); //Image Dimention
             $image->toJpeg(100)->save(base_path('public/images/sliders/' . $img_name)); //Image Saving Path
             $imageUrl = 'images/sliders/' . $img_name; //For Store Database
         }
@@ -100,7 +100,7 @@ class SliderController extends Controller
                     $img_row = $request->file('image');
                     $img_name = $firstname . '_' . hexdec(uniqid()) . '.' . $img_row->getClientOriginalExtension();
                     $image = $manager->read($img_row); // read image from file system
-                    $image = $image->resize(700, 354); //Image Dimention
+                    // $image = $image->resize(700, 354); //Image Dimention
                     $image->toJpeg(100)->save(base_path('public/images/sliders/' . $img_name)); //Image Saving Path
                     $imageUrl = 'images/sliders/' . $img_name; //For Store Database
                 }
@@ -119,7 +119,7 @@ class SliderController extends Controller
                     $img_row = $request->file('image');
                     $img_name = $firstname . '_' . hexdec(uniqid()) . '.' . $img_row->getClientOriginalExtension();
                     $image = $manager->read($img_row); // read image from file system
-                    $image = $image->resize(700, 354); //Image Dimention
+                    // $image = $image->resize(700, 354); //Image Dimention
                     $image->toJpeg(100)->save(base_path('public/images/sliders/' . $img_name)); //Image Saving Path
                     $imageUrl = 'images/sliders/' . $img_name; //For Store Database
                 }

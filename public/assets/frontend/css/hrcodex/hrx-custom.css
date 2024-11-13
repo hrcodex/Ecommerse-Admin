@@ -1,0 +1,239 @@
+/*=====================================
+    offer text css
+======================================*/
+.offer-text-area .marquee-wrap {
+    background: linear-gradient(90deg, #53afd3 15%, #2277aa 83%);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 12px 0;
+}
+.offer-text-area .marquee-wrap:hover .marquee1,
+.offer-text-area .marquee-wrap:hover .marquee2 {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+}
+.offer-text-area .marquee-wrap .marquee1 {
+    -webkit-animation: marquee1 100s linear infinite;
+    animation: marquee1 100s linear infinite;
+    -webkit-animation-delay: -100s;
+    animation-delay: -100s;
+}
+.offer-text-area .marquee-wrap .marquee2 {
+    -webkit-animation: marquee2 100s linear infinite;
+    animation: marquee2 100s linear infinite;
+    -webkit-animation-delay: -50s;
+    animation-delay: -50s;
+}
+@-webkit-keyframes marquee1{
+  0%{
+    transform: translateX(100%);
+  } 100%{
+    transform: translateX(-100%);
+  }
+}
+@-moz-keyframes marquee1{
+  0%{
+    transform: translateX(100%);
+  } 100%{
+    transform: translateX(-100%);
+  }
+}
+@keyframes marquee1{
+  0%{
+    transform: translateX(100%);
+  } 100%{
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes marquee2{
+  0%{
+    transform: translateX(0%);
+  } 100%{
+    transform: translateX(-200%);
+  }
+}
+@-moz-keyframes marquee2{
+  0%{
+    transform: translateX(0%);
+  } 100%{
+    transform: translateX(-200%);
+  }
+}
+@keyframes marquee2{
+  0%{
+    transform: translateX(0%);
+  } 100%{
+    transform: translateX(-200%);
+  }
+}
+.offer-text-area .marquee-wrap .offer-text-block ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.offer-text-area .marquee-wrap .offer-text-block ul li {
+    margin-left: 20px;
+    padding-left: 20px;
+    width: max-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+/* .offer-text-area .marquee-wrap .offer-text-block ul li::before {
+    color: #43b18a;
+    content: "\f000";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    font-size: 16px;
+    line-height: 1;
+    left: -5px;
+} */
+.offer-text-area .marquee-wrap .offer-text-block ul li .custom-text span {
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+.offer-text-area .marquee-wrap .offer-text-block ul li .custom-text span span.n-text {
+    font-weight: 400;
+    text-transform: none;
+}
+/* ----------------------------shop buy now button */
+ /* product buy now button */
+ .hrx-order-button-shop{
+    width: 100%;
+    height: 40px;
+    background-color: #0d6efd;
+    text-align: center;
+
+    /* border-radius: 20px 20px 0px 0px; */
+    /* border-radius: 10px 10px; */
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+
+    /* font-weight: bold; */
+}
+
+/* ========================Category Slider Responsve==start */
+@media (max-width: 767px){
+
+    /* service css */
+    .service-hrx .service-box{
+        width: 100%;
+    }
+    .service-hrx .service-box-hrx .s-box-hrx {
+        width: 329px;
+        padding: 20px;
+    }
+
+}
+@media (max-width: 991px){
+
+    /* service css */
+    .service-hrx .service-box{
+        width: 50%;
+    }
+    .service-hrx .service-box-hrx .s-box-hrx {
+        width: 369px;
+    }
+
+}
+@media (max-width: 1199px){
+
+    /* service css */
+    .service{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .service-hrx .service-box{
+        width: 33.33%;
+    }
+    .service-hrx .service-box-hrx .s-box-hrx {
+        width: 360px;
+    }
+}
+
+    /* service css
+/* .service{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fafafa;
+}
+.service-hrx .service-box-hrx {
+    width: 25%;
+}
+.service-hrx .service-box-hrx .s-box-hrx {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.service-hrx .service-box:last-child{
+    border-right: none;
+}
+.service-hrx .service-box-hrx .s-box-hrx  i{
+    font-size: 38px;
+    margin-right: 20px;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.service-hrx .service-box-hrx .s-box-hrx :hover i{
+    color: #2277aa;
+    transform: rotateY(180deg);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.service-hrx .service-box-hrx .s-box-hrx  .service-content span{
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+.service-hrx .service-box-hrx .s-box-hrx  .service-content p{
+    color: #999;
+    font-size: 13px;
+    margin-top: 1px;
+} */
+
+
+/* ========================Category Slider Responsve==End */
+
+/* Header css start */
+/* header-bottom css */
+.header-bottom-area{
+    background-color: #fff;
+    display: none;
+}
+.header-bottom-area .main-menu-area{
+    position: relative;
+}
+.header-bottom-area .main-menu-area .main-navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-bottom-area .main-menu-area .main-navigation .navbar-collapse{
+    width: 75%;
+}
+.header-bottom-area .main-menu-area .main-navigation .img-hotline{
+    width: 25%;
+}
+/* box-header css */
+.main-menu-area .main-navigation .box-header{
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    line-height: 0;
+}
+.main-menu-area .main-navigation .box-header button{
+    font-size: 18px;
+    background-color: transparent;
+    line-height: 0;
+}

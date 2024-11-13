@@ -152,6 +152,16 @@
                                        </div>
 
                              </div>
+                             <div class="col-lg-4">
+
+                                       <div class="mb-3">
+                                            <label for="product-brand" class="form-label">Best Selling </label>
+                                           <select class="form-control" name="is_featured" ><option value="0" @if ($product->is_featured == 0) selected @endif>No</option>
+                                            <option value="1" @if ($product->is_featured == 1) selected @endif>Yes</option>
+                                       </select>
+                                       </div>
+
+                             </div>
 
 
                         </div>

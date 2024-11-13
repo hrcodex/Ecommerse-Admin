@@ -132,6 +132,17 @@
                              </div>
                              <div class="col-lg-6">
 
+                                       <div class="mb-3">
+                                            <label for="product-brand" class="form-label">Best Selling <i class="fa fa-star text-blue" aria-hidden="true"></i></label>
+                                            <select class="form-control" id="choices-single-no-search"  name="is_featured" data-choices data-choices-search-false >
+                                                <option value="0" selected>No</option>
+                                                <option value="1">Yes</option>
+                                           </select>
+                                       </div>
+
+                             </div>
+                             <div class="col-lg-6">
+
                                 <label for="product-categories" class="form-label">Product Brand</label>
                                 <select class="form-control" name="brand_id" id="product-categories" data-choices data-choices-groups data-placeholder="Select Categories" name="category_id">
                                      <option value="">Choose a categories</option>
