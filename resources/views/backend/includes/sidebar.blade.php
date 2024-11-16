@@ -45,9 +45,6 @@
                                <a class="sub-nav-link" href="{{ route('admin.orders.list') }}">List</a>
                           </li>
                           <li class="sub-nav-item">
-                               <a class="sub-nav-link" href="{{ route('admin.orders.details') }}">Details</a>
-                          </li>
-                          <li class="sub-nav-item">
                                <a class="sub-nav-link" href="{{ route('admin.orders.cart') }}">Cart</a>
                           </li>
                           <li class="sub-nav-item">

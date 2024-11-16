@@ -12,6 +12,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 -   [Image Intervention](https://image.intervention.io/v3).
 -   [Breeze](https://laravel.com/docs/11.x/starter-kits).
+-   [dompdf](https://github.com/barryvdh/laravel-dompdf).
 <!-- Notes  -->
 
 ## Learning Laravel

@@ -80,8 +80,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @endsection
 @section('content')
+@php
+    $categories =  DB::table('categories')->where('status', 'published')->get();
+      $generalsettings =  DB::table('generalsettings')->first();
+
+@endphp
 <!-- service start -->
-<section class="service-section section-tb-padding" style="padding-top: 2px;padding-bottom: 2px">
+@if($generalsettings->category == 1)
+<section class="service-section section-tb-padding" style="padding-top: 2px;padding-bottom: 5px">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -94,12 +100,17 @@
 
                   @foreach ($categories as $categorie)
                     {{-- Item Category Start --}}
-                    <div class="service-box hrx-cms" style=" margin: auto;width: 50%;">
-                        <div class="s-box s-box-hrx">
 
+                    <div class="service-box hrx-cms" style=" margin: auto;width: 50%;">
+
+                        <div class="s-box s-box-hrx">
+                            <a href="{{ route('category',['id'=>$categorie->id]) }}">
                                 <img src="{{ asset($categorie->image) }}"  width="80" height="80" style="border-radius: 10%" alt="">
+                            </a>
                            </div>
+
                     </div>
+
                     {{-- Item Category End --}}
                     @endforeach
                     @endisset
@@ -110,6 +121,7 @@
         </div>
     </div>
 </section>
+@endif
 {{-- ================================================================== --}}
 
 
@@ -118,6 +130,7 @@
 
 
  {{-- Slider section----------------------------------------Start --}}
+ @if($generalsettings->slider == 1)
  <section class="home-slider-6" style="margin-bottom: 10px;">
     <div class="container">
         <div class="row">
@@ -162,6 +175,7 @@
         </div>
     </div>
 </section>
+@endif
 {{-- Slider section----------------------------------------End --}}
 
 <!--home page slider end-->
@@ -187,7 +201,7 @@
                     <div class="items" style="border: 1px solid #2277aa;margin: 0px;padding: 0px">
                         <div class="tred-pro">
                             <div class="tr-pro-img">
-                                <a href="{{ route('product-details') }}">
+                                <a href="{{ route('product-details',['id'=>$best_selling_product]) }}">
                                     <img class="img-fluid" src="{{ asset($best_selling_product->image) }}" alt="pro-img1">
                                     @php
                                         $best_selling_image_two = DB::table('product_images')->where('status', 'published')->where('product_id', $best_selling_product->id)->first();
@@ -201,18 +215,18 @@
                             </div>
                             <div class="pro-icn">
                                 {{-- <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a> --}}
-                                <a href="{{ route('chackout') }}" class="w-c-q-icn"><i class="fa fa-eye"></i></a>
+                                <a href="{{ route('product-details',['id'=>$best_selling_product->id]) }}" class="w-c-q-icn"><i class="fa fa-eye"></i></a>
                                 {{-- <a href="{{ route('chackout') }}"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a> --}}
 
                             </div>
                         </div>
                         <div class="caption">
-                            <h3><a href="{{ route('product-details') }}" style="padding-right: 3px;padding-left: 2px">{{ $best_selling_product->name }}</a></h3>
+                            <h3><a href="{{ route('product-details',['id'=>$best_selling_product->id]) }}" style="padding-right: 3px;padding-left: 2px">{{ $best_selling_product->name }}</a></h3>
                            <div class="pro-price">
                             <span class="new-price">{{ $best_selling_product->sale_price }}</span>
                         </div>
                             <div class="pro-price" style="margin-bottom: 5px">
-                                <a href="{{ route('product-details') }}" class="new-price hrx-order-button ">Order Now</a>
+                                <a href="{{ route('product-details',['id'=>$best_selling_product->id]) }}" class="new-price hrx-order-button ">Order Now</a>
                             </div>
 
                         </div>
@@ -234,7 +248,7 @@
 {{-- Products Start --}}
 <section style="background-color: #eee;">
     <div class="text-center container py-5">
-      <h4 class="mt-4 mb-5"><strong>Product Section</strong></h4>
+      <h4 class="mt-4 mb-5"><strong>Products Section</strong></h4>
 
       <div class="row">
         @isset($products)
@@ -246,9 +260,11 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xl-2 col-xxl-2 col-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
+                <a href="{{ route('product-details',['id'=>$product->id]) }}" >
               <img src="{{ asset($product->image) }}"
                 class="w-100" />
-              <a href="{{ route('product-details') }}" >
+            </a>
+              <a href="{{ route('product-details',['id'=>$product->id]) }}" >
                 <div class="mask" >
                   <div class="d-flex justify-content-start align-items-end h-100" >
                     <h5 ><span class="badge bg-primary ms-1" >Order Now</span></h5>
@@ -259,9 +275,9 @@
                 </div>
               </a>
             </div>
-            <div class="card-body">
-              <a href="{{ route('product-details') }}" class="text-reset">
-                <p class="card-title mb-2">{{  Str::limit($product->name, 30) }}</p>
+            <div class="card-body" style="padding: 2px">
+              <a href="{{ route('product-details',['id'=>$product->id]) }}" class="text-reset">
+                <p class="card-title mb-2" style="padding: 2px">{{  Str::limit($product->name, 20) }}</p>
               </a>
               <h6 class="mb-2">
                <strong class="ms-2 text-danger">{{  $product->sale_price }} TK</strong>
@@ -386,124 +402,7 @@
 <!-- Cetegory wize product end -->
 
 <!-- quick veiw start -->
-<section class="quick-view">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Product quickview</h5>
-                    <a href="javascript:void(0)" data-bs-dismiss="modal" aria-label="Close"><i class="ion-close-round"></i></a>
-                </div>
-                <div class="quick-veiw-area">
-                    <div class="quick-image">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="image-1">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-2">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/prro-page-image01.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-3">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1-1.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-4">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-5">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-6">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2-2.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-7">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image3.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                            <div class="tab-pane fade show" id="image-8">
-                                <a href="javascript:void(0)" class="long-img">
-                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image03.jpg" class="img-fluid" alt="image">
-                                </a>
-                            </div>
-                        </div>
-                        <ul class="nav nav-tabs quick-slider owl-carousel owl-theme">
-                            <li class="nav-item items">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#image-1"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image1.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-2"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image2.jpg" class="img-fluid" alt="iamge"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-3"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image3.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-4"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image4.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-5"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image5.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-6"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image6.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-7"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image8.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                            <li class="nav-item items">
-                                <a class="nav-link" data-bs-toggle="tab" href="#image-8"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image7.jpg" class="img-fluid" alt="image"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="quick-caption">
-                        <h4>Fresh organic reachter</h4>
-                        <div class="quick-price">
-                            <span class="new-price">$350.00 USD</span>
-                            <span class="old-price"><del>$399.99 USD</del></span>
-                        </div>
-                        <div class="quick-rating">
-                            <i class="fa fa-star c-star"></i>
-                            <i class="fa fa-star c-star"></i>
-                            <i class="fa fa-star c-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <div class="pro-description">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and</p>
-                        </div>
-                        <div class="pro-size">
-                            <label>Size: </label>
-                            <select>
-                                <option>1 ltr</option>
-                                <option>3 ltr</option>
-                                <option>5 ltr</option>
-                            </select>
-                        </div>
-                        <div class="plus-minus">
-                            <span>
-                                <a href="javascript:void(0)" class="minus-btn text-black">-</a>
-                                <input type="text" name="name" value="1">
-                                <a href="javascript:void(0)" class="plus-btn text-black">+</a>
-                            </span>
-                            <a href="{{ route('chackout') }}" class="quick-cart"><i class="fa fa-shopping-bag"></i></a>
-                            <a href="wishlist.html" class="quick-wishlist"><i class="fa fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 <!-- quick veiw end -->
 @endsection
 @section('script')

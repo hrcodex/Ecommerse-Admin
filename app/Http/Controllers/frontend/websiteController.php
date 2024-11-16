@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
+use App\Models\Faq;
 use App\Models\generalsetting;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -46,6 +47,48 @@ class websiteController extends Controller
 
 
         return view('frontend.pages.shop.shop')
+            ->with('products', $products)
+            ->with('categories_shop', $categories_shop);
+    }
+
+    public function category($id)
+    {
+        $categories_shop = Categorie::where('status', 'published')->get();
+        $categories_name = Categorie::where('id', $id)->first();
+        $products = Product::where('status', 'published')->orderBy('id', 'DESC')->where('category_id', $id)->paginate(8);
+
+
+
+        return view('frontend.pages.category.category')
+            ->with('products', $products)
+            ->with('categories_shop', $categories_shop)
+            ->with('categories_name', $categories_name);
+    }
+
+    public function faq()
+    {
+        $faqs = Faq::where('status', 'published')->paginate(10);
+        return view('frontend.pages.faq.faq')
+            ->with('faqs', $faqs);
+    }
+
+    public function search(Request $request)
+    {
+
+        $request->validate([
+            'query' => ['required', 'string', 'regex:/^[a-zA-Z0-9-_]*$/'],
+
+        ]);
+
+
+        if (!empty($request->get('query'))) {
+            $products = Product::where('name', 'like', '%' . $request->get('query') . '%')->paginate(10);
+        }
+
+        $settings = generalsetting::first();
+        $categories_shop = Categorie::where('status', 'published')->get();
+
+        return view('frontend.pages.search_result.search_result')
             ->with('products', $products)
             ->with('categories_shop', $categories_shop);
     }

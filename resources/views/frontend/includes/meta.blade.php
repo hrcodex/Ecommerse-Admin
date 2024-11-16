@@ -1,6 +1,19 @@
+@php
+    $metas = DB::table('metas')->where('status','Published')->get();
+@endphp
 <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta name="description" content="A best clean, modern, stylish, creative, responsive theme for different eCommerce business or industries."/>
-        <meta name="keywords" content="organic food theme, vegetables, foof store, eCommerce html template, responsive, electronics store, furniture wood, fashion, furniture, mobile, watches, electronics, computers accessories, toys, jewellery, restaurant accessories"/>
-        <meta name="author" content="spacingtech_webify">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A best clean, modern, stylish, creative, responsive theme for different eCommerce business or industries."/>
+<meta name="author" content="spacingtech_webify">
+@isset($metas)
+@foreach ($metas as $meta)
+ @isset($meta->Keyword)
+<meta name="{{ $meta->title }}" content="{{ $meta->Keyword }}"/>
+ @endisset
+@isset($meta->Description)
+<meta name="description" content="{!! $meta->Description !!}"/>
+ @endisset
+@endforeach
+@endisset
+
+

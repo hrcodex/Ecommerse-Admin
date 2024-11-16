@@ -14,7 +14,7 @@
                 <div class="col">
                     <div class="about-l">
                         <ul class="about-link">
-                            <li class="go-home"><a href="{{ route('home') }}">Home</a> | Shop </li>
+                            <li class="go-home">{{ $products->count() }} Result(s) Found</li>
                         </ul>
                     </div>
                 </div>
@@ -135,6 +135,9 @@
                         <ul class="grid-product">
 
 
+                            @isset($products)
+
+
 
                             @foreach ($products as $product)
 
@@ -179,6 +182,7 @@
                              {{-- /single product End------------------------------ --}}
 
                              @endforeach
+                             @endisset
 
 
                         </ul>

@@ -1,8 +1,33 @@
 @php
-      $categories =  DB::table('categories')->where('status', 'published')->get();
+    $categories =  DB::table('categories')->where('status', 'published')->get();
+      $generalsettings =  DB::table('generalsettings')->first();
+
 @endphp
-<header class="hrx-header-area">
-    <div class="hrx-header-main-area">
+    <!-- top notificationbar start -->
+    @if($generalsettings->home_top_bar == 1)
+
+     <section class="top-6" style="background-color: #2277aa;">
+        <div class="container">
+            <div class="row ">
+                <div class="col">
+                    <ul class="top-home">
+                        <li class="top-home-li">
+                            <ul class="top-dropdown">
+                                 <!-- login start -->
+                                <li class="top-dropdown-li">
+                                    <p class="t-offer"><span class="top-off" style="margin-right: 20px">Fast shipping</span>orders from all item</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </section>
+      @endif
+
+     <header class="hrx-header-area">
+     <div class="hrx-header-main-area">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -14,11 +39,11 @@
                             </a>
                         </div>
                         <!-- logo end -->
-                        <!-- search start -->
+                        <!-- search--------------------Big start -->
                         <div class="hrx-header-element hrx-header-search">
-                            <form>
-                                <input type="text" name="search" placeholder="Search Product.">
-                                <a href="search.html" class="search-btn"><i class="fa fa-search"></i></a>
+                            <form action="{{ route('search') }}" method="GET">
+                                <input type="text" name="query" value="{{ request()->input('query') }}" placeholder="Search Product">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <!-- search end -->
@@ -34,19 +59,25 @@
                                     <!-- mobile search end -->
                                 </li>
 
-                                <li class="side-wrap cart-wrap">
+                                {{-- <li class="side-wrap cart-wrap">
                                     <div class="shopping-widget">
                                         <div class="shopping-cart">
-                                            <a href="javascript:void(0)" class="cart-count">
+                                            <a href="@if (session()->has('qty')){{ route('cheakout.cart',['product_id_cart'=>session('product_id_cart')]) }}
+                                                @else
+                                                #@endif" class="cart-count">
                                                 <span class="cart-icon-wrap">
                                                     <span class="cart-icon"><i class="icon-handbag"></i>
-                                                        <span id="cart-total" class="bigcounter">5</span>
+                                                        <span id="cart-total" class="bigcounter">@if (session()->has('qty'))1
+                                                            @else
+                                                            0
+
+                                                        @endif</span>
                                                     </span>
                                                 </span>
                                             </a>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li class="side-wrap nav-toggler">
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                                     <span class="line"></span>
@@ -91,7 +122,7 @@
                                                 @foreach ($categories as $categorie)
 
                                                 <li class="submenu-li">
-                                                    <a href="#" class="submenu-link">{{ $categorie->name }}</a>
+                                                    <a href="{{ route('category',['id'=>$categorie->id]) }}" class="submenu-link">{{ $categorie->name }}</a>
                                                 </li>
 
                                                 @endforeach
@@ -100,21 +131,22 @@
 
                                         </li>
                                         <li class="menu-link parent">
-                                            <a href="{{ route('product-details') }}" class="link-title">
-                                                <span class="sp-link-title">product-details</span>
-                                            </a>
-                                        </li>
-                                        <li class="menu-link parent">
-                                            <a href="{{ route('chackout') }}" class="link-title">
-                                                <span class="sp-link-title">chackout</span>
+                                            <a href="{{ route('faq') }}" class="link-title">
+                                                <span class="sp-link-title">About Us</span>
                                             </a>
                                         </li>
 
-                                        <li class="menu-link">
+                                        {{-- <li class="menu-link parent">
+                                            <a href="{{ route('chackout') }}" class="link-title">
+                                                <span class="sp-link-title">chackout</span>
+                                            </a>
+                                        </li> --}}
+
+                                        {{-- <li class="menu-link">
                                             <a href="javascript:void(0)" class="link-title">
                                                 <span class="sp-link-title">Buy vegist <span class="hot">Hot</span></span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -123,8 +155,11 @@
                             <div class="hotline">
                                 <a href="javascript:void(0)"><img src="{{ asset('assets/frontend') }}/image/icon_contact.png" class="img-fluid" alt="image-icon"></a>
                                 <div class="image-content">
-                                    <span class="hot-l">Hotline:</span>
-                                    <span>0123 456 789</span>
+                                    <span class="hot-l">Phone:</span>
+                                    @isset( $generalsettings->phone)
+                                    <span>{{ $generalsettings->phone }}</span>
+                                    @endisset
+
                                 </div>
                             </div>
                             <!-- hotline end -->
@@ -134,9 +169,9 @@
             </div>
         </section>
         <!-- menu end -->
-    </div>
-    <!-- mobile menu start -->
-    <div class="hrx-header-bottom-area">
+     </div>
+     <!-- mobile menu start -->
+     <div class="hrx-header-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -161,6 +196,7 @@
                                                 </a>
                                             </li>
 
+
                                             <li class="menu-link parent">
 
                                                 <a href="#collapse-page-menu" data-bs-toggle="collapse" class="link-title link-title-lg">
@@ -171,19 +207,24 @@
                                                 <ul class="dropdown-submenu sub-menu collapse" id="collapse-page-menu">
                                                     @foreach ($categories as $categorie)
                                                     <li class="submenu-li">
-                                                        <a href="#" class="submenu-link">{{ $categorie->name }}</a>
+                                                        <a href="{{ route('category',['id'=>$categorie->id]) }}" class="submenu-link">{{ $categorie->name }}</a>
                                                     </li>
 
                                                     @endforeach
                                                 </ul>
                                                 @endisset
                                             </li>
-
                                             <li class="menu-link">
+                                                <a href="{{ route('faq') }}" class="link-title">
+                                                    <span class="sp-link-title">Faq</span>
+                                                </a>
+                                            </li>
+
+                                            {{-- <li class="menu-link">
                                                 <a href="javascript:void(0)" class="link-title">
                                                     <span class="sp-link-title">Buy vegist <span class="hot">Hot</span></span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -194,10 +235,10 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- mobile menu end -->
-    <!-- minicart start -->
-    {{-- <div class="mini-cart">
+     </div>
+     <!-- mobile menu end -->
+     <!-- minicart start -->
+     {{-- <div class="mini-cart">
         <a href="javascript:void(0)" class="shopping-cart-close"><i class="ion-close-round"></i></a>
         <div class="cart-item-title">
             <p>
@@ -298,22 +339,24 @@
                 </div>
             </li>
         </ul>
-    </div> --}}
-    <!-- minicart end -->
-    <!-- mobile search start -->
-    <div class="modal fade" id="search-modal">
-        <div class="modal-dialog">
+        </div> --}}
+        <!-- minicart end -->
+        <!-- mobile----------------------small-------------- search start -->
+        <div class="modal fade" id="search-modal">
+            <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
                             <div class="col">
                                 <div class="search-content">
+                                    <form action="{{ route('search') }}" method="GET">
                                     <div class="search-engine">
-                                        <input type="text" name="search" placeholder="Search Product.">
-                                        <a href="search.html" class="search-btn"><i class="ion-ios-search-strong"></i></a>
+                                        <input type="text" name="query" value="{{ request()->input('query') }}"placeholder="Search Product">
+                                        <button class="search-btn"><i class="ion-ios-search-strong"></i></button>
                                     </div>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="ion-close-round"></i></button>
+
+                                </form>
                                 </div>
                             </div>
                         </div>

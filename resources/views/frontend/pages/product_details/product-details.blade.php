@@ -80,10 +80,10 @@
                         <div class="breadcrumb-start"  style="text-align: center">
                             <ul class="breadcrumb-url">
                                 <li class="breadcrumb-url-li">
-                                    <a href="index5.html">Home</a>
+                                    <a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-url-li">
-                                    <span>Fresh green orange</span>
+                                    <span>Product Details</span>
                                 </li>
                             </ul>
                         </div>
@@ -103,131 +103,208 @@
                             <div class="row pro-image">
                                 <div class="col-xl-5 col-lg-6 col-md-6 col-12 larg-image">
                                     <div class="tab-content">
+
                                         <div class="tab-pane fade show active" id="image-11">
                                             <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(https://img.freepik.com/premium-photo/cosmetic-products-presentation-mockup-showcase-ai-image_1209683-16885.jpg)">
-                                                    <img src="https://img.freepik.com/premium-photo/cosmetic-products-presentation-mockup-showcase-ai-image_1209683-16885.jpg" class="img-fluid" alt="image">
+                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset($products->image) }})">
+                                                    <img src="{{ asset($products->image) }}" class="img-fluid" alt="image">
                                                 </figure>
                                             </a>
                                         </div>
-                                        <div class="tab-pane fade" id="image-22">
+                                        @foreach ($products_images as $key=>$products_image)
+                                        <div class="tab-pane fade" id="image-{{ ++$key }}">
                                             <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/prro-page-image01.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/prro-page-image01.jpg" class="img-fluid" alt="image">
+                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset($products_image->image) }}">
+                                                    <img src="{{ asset($products_image->image) }}" class="img-fluid" alt="image">
                                                 </figure>
                                             </a>
                                         </div>
-                                        <div class="tab-pane fade" id="image-33">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1-1.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1-1.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane fade" id="image-44">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image1.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane fade" id="image-55">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane fade" id="image-66">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2-2.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image2-2.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane fade" id="image-77">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image3.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image3.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane fade" id="image-88">
-                                            <a href="javascript:void(0)" class="long-img">
-                                                <figure class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image03.jpg)">
-                                                    <img src="{{ asset('assets/frontend') }}/image/pro-page-image/pro-page-image03.jpg" class="img-fluid" alt="image">
-                                                </figure>
-                                            </a>
-                                        </div>
+                                        @endforeach
+
+
                                     </div>
                                     <ul class="nav nav-tabs pro-page-slider owl-carousel owl-theme">
                                         <li class="nav-item items">
-                                            <a class="nav-link active" data-bs-toggle="tab" href="#image-11"><img src="https://img.freepik.com/premium-photo/cosmetic-products-presentation-mockup-showcase-ai-image_1209683-16885.jpg" class="img-fluid" alt="image"></a>
+                                            <a class="nav-link active" data-bs-toggle="tab" href="#image-11"><img src="{{ asset($products->image) }}" class="img-fluid" alt="image"></a>
                                         </li>
+                                        @foreach ($products_images as $key=>$products_image)
                                         <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-22"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image2.jpg" class="img-fluid" alt="iamge"></a>
+                                            <a class="nav-link" data-bs-toggle="tab" href="#image-{{ ++$key }}"><img src="{{ asset($products_image->image) }}" class="img-fluid" alt="iamge"></a>
                                         </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-33"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image3.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-44"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image4.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-55"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image5.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-66"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image6.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-77"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image8.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
-                                        <li class="nav-item items">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#image-88"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/image7.jpg" class="img-fluid" alt="image"></a>
-                                        </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <div class="col-xl-7 col-lg-6 col-md-6 col-12 pro-info">
-                                    <h4>Ayatul Kursi Metal Wall Art | Islamic Wall Decor For Home</h4>
+                                    <form action="{{ route('cheakout') }}" method="post">
+                                        @csrf
+                                    <h4>{{ $products->name }}</h4>
 
-                                    <div class="pro-availabale">
+                                    {{-- <div class="pro-availabale">
                                         <span class="available">Availability:</span>
                                         <span class="pro-instock">In stock</span>
-                                    </div>
+                                    </div> --}}
                                     <div class="pro-price">
-                                        <span class="new-price" style="font-size: 30px;color: red">৳ 1299.00</span>
+                                        <span class="new-price" style="font-size: 30px;color: red">৳ {{ $products->sale_price }}</span>
 
-                                        <div class="Pro-lable">
+                                        {{-- <div class="Pro-lable">
                                             <span class="p-discount">20%</span>
-                                        </div>
+                                        </div> --}}
                                     </div>
-                                    <span class="pro-details">Contact :  <span class="pro-number">01790370183</span> </span>
-                                    <p style="color: rgb(39, 39, 39)">এই ক্যালিগ্রাফি সম্পুর্ন 0.6 মি. মি. Stainless Steel দিয়ে তৈরি করা হয়েছে কেউ {এমএস/লোহা} মনে করবেন না । এসএস কিন্তু ওয়াটার প্রুফ মেটাল তাই সহজেই জং ধরবে না,মরিচা পড়বেনা এবং কালারও নষ্ট হবে না।</p>
+                                    {{-- <span class="pro-details">Contact :  <span class="pro-number">01790370183</span> </span> --}}
+                                    <p style="color: rgb(39, 39, 39)">{!! $products->content !!}</p>
+                                    {{-- -----------------------Start-------------------------- --}}
+                                    @isset($products->atr_Colors)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Colors:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Colors as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Colors" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
 
-                                    <div class="product-color">
-                                        <span class="color-label">Color:</span>
-                                        <span class="color">
-                                            <a href="#" class="active"><img src="https://www.canva.com/design/DAGUrUC9Thc/giNd_Qlc-FwxcEnzIOokNQ/view?utm_content=DAGUrUC9Thc&utm_campaign=designshare&utm_medium=link&utm_source=editor" class="img-fluid" alt="image" width="50" height="50"></a>
-                                            <a href="#"><img src="{{ asset('assets/frontend') }}/image/pro-page-image/prro-page-image01.jpg" class="img-fluid" alt="image" width="50" height="50"></a>
-                                            <a href="#"><img src="https://www.dinowala.com/products/397160598_303135425912182_1735314622669067209_n1701273700.jpg" class="img-fluid" alt="image" width="50" height="50"></a>
-                                        </span>
+                                        </ul>
                                     </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Dimension)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Dimension:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Dimension as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Dimension" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Wide)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Wide:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Wide as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Wide" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Size)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Size:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Size as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Size" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_package)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Package:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_package as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_package" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Height)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Height:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Height as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Height" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Weight)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Weight:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Weight as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Weight" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Pieces)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Pieces:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Pieces as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Pieces" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Names)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Names:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Names as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Names" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+                                    {{-- ------ --}}
+                                    @isset($products->atr_Material)
+                                    <div class="pro-items">
+                                        <span class="pro-size">Material:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($products->atr_Material as $key=>$item)
+                                            {{-- <li><a href="javascript:void(0)">{{ $Color }}</a></li> --}}
+                                            <li><input type="radio" name="atr_Material" @if ($key == 0)checked @endif value="{{ $item }}"><span style="margin-left: 3px;"> {{ $item }}</span></li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    @endisset
+
+
+                                     {{-- -----------------------End-------------------------- --}}
+
                                     <div class="pro-qty">
                                         <span class="qty">Quantity:</span>
                                         <div class="plus-minus">
                                             <span>
                                                 <a href="javascript:void(0)" class="minus-btn text-black">-</a>
-                                                <input type="text" name="name" value="1">
+                                                <input type="number" name="qty" value="1">
                                                 <a href="javascript:void(0)" class="plus-btn text-black">+</a>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="pro-btn" >
 
-                                        <a href="{{ route('chackout') }}" class="btn btn-style1 hrx-buynow-btn" style="background-color: yellow;color: black;font-weight: bold;"><span><i class="fa fa-shopping-bag"></i> Buy now</span></a>
+                                        <button class="btn btn-style1 hrx-buynow-btn" style="background-color: yellow;color: black;font-weight: bold;"><span><i class="fa fa-shopping-bag"></i> Buy now</span></button>
+                                        <a href="tel:{{ $settings->phone }}" class="btn btn-style1 hrx-buynow-btn" style="background-color: rgb(32, 210, 207);color: black;font-weight: bold;margin-top: 5px"><span>{{ $settings->phone }}</span></a>
+                                        <input type="hidden" name="product_id" value="{{ $products->id }}">
 
                                     </div>
-
+                                </form>
                                 </div>
                             </div>
                         </section>
@@ -237,20 +314,19 @@
                             <div class="col">
                                 <div class="pro-page-tab">
                                   <div class="tab-pane fade show" id="tab-3">
+                                    @isset($products->video_link)
+
+
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe width="100%"  src="https://www.youtube.com/embed/8GZVUxdoyyU?si=Qb3NupK3A7IjgG9e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="hrx-video-height"></iframe>
+                                                <iframe width="100%" src="{{ $products->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="hrx-video-height"></iframe>
+
+                                                {{-- <iframe width="100%"  src="https://www.youtube.com/embed/8GZVUxdoyyU?si=Qb3NupK3A7IjgG9e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="hrx-video-height"></iframe> --}}
                                             </div>
+
+                                            @endisset
                                             <div class="tab-1content">
-                                                <h4>Short Description</h4>
-                                                <div class="tab-description">
-                                                    <p>ক্যালিগ্রাফী এর বিবরণঃ</p>
-                                                    <p>𝟏. 𝐒𝐢𝐳𝐞- 𝟏7/𝟐3 𝐢𝐧𝐜𝐡</p>
-                                                    <p>𝟐. 𝐓𝐡𝐢𝐜𝐤 – 𝟎.𝟔 𝐦𝐦</p>
-                                                    <p>𝟑. 𝐂𝐨𝐥𝐨𝐫 – 𝐋𝐢𝐟𝐞𝐭𝐢𝐦𝐞 𝐂𝐨𝐥𝐨𝐫 𝐆𝐮𝐚𝐫𝐚𝐧𝐭𝐞𝐞</p>
-                                                    <p>𝟒. 𝐌𝐞𝐭𝐚𝐥: 𝐒𝐒 𝐌𝐞𝐭𝐚𝐥</p>
-                                                    <p>𝟓.𝐖𝐞𝐢𝐠𝐡𝐭: 𝟑𝟗𝟎 𝐠𝐦</p>
-                                                    <p>✅এই ক্যালিগ্রাফি সম্পুর্ন 0.6 মি. মি. Stainless Steel দিয়ে তৈরি করা হয়েছে কেউ {এমএস/লোহা} মনে করবেন না । এসএস কিন্তু ওয়াটার প্রুফ মেটাল তাই সহজেই জং ধরবে না,মরিচা পড়বেনা এবং কালারও নষ্ট হবে না।</p>
-                                                </div>
+                                                <h4>Product Description</h4>
+                                                <div class="tab-description">{!! $products->description !!}</div>
                                             </div>
                                         </div>
 
@@ -259,390 +335,55 @@
                             </div>
                         </section>
                         <!-- product page tab end -->
+
                         <!-- releted product start -->
                         <section class="pro-releted">
                             <div class="section-title3">
                                 <h2><span>Related Products</span></h2>
                             </div>
                             <div class="releted-products owl-carousel owl-theme">
-                                <div class="items">
+
+                                {{-- ------------------------Single Product Start --}}
+                                @isset($category_products)
+                                @foreach ($category_products as $category_product)
+                                @if($category_product->id == $products->id)
+                                @else
+
+
+
+                                <div class="items" style="padding: 10px">
                                     <div class="tred-pro">
                                         <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-1.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-01.jpg" alt="additional image">
+                                            <a href="{{ route('product-details',['id'=>$category_product->id]) }}">
+                                                <img class="img-fluid" src="{{ asset($category_product->image) }}" alt="img">
+                                                @php
+                                                $product_image_two = DB::table('product_images')->where('status', 'published')->where('product_id', $category_product->id)->first();
+                                                @endphp
+                                                <img class="img-fluid additional-image" src="{{ asset($product_image_two->image) }}">
                                             </a>
                                         </div>
                                         <div class="Pro-lable">
                                             <span class="p-text">New</span>
                                         </div>
                                         <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
+                                          
+                                            <a href="{{ route('product-details',['id'=>$category_product->id]) }}" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
+
                                         </div>
                                     </div>
                                     <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh organic fruit (50gm)</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
+                                        <h3><a href="{{ route('product-details',['id'=>$category_product->id]) }}" style="padding: 5px">{{ $category_product->name }}</a></h3>
+
                                         <div class="pro-price">
-                                            <span class="new-price">$130.00 USD</span>
+                                            <span class="new-price">{{ $category_product->sale_price }} TK</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-2.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-02.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-text">New</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh & healty food</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$126.00 USD</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-3.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-03.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-20%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh apple</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$130.00 USD</span>
-                                            <span class="old-price"><del>$150.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-4.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-04.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-text">New</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh litchi 100% organic</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$117.00 USD</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-5.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-05.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-12%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Vegetable tomato fresh</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star b-star"></i>
-                                            <i class="fa fa-star b-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$133.00 USD</span>
-                                            <span class="old-price"><del>$145.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-6.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-06.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-21%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Natural grassbean</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$139.00 USD</span>
-                                            <span class="old-price"><del>$160.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-7.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-07.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-10%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh dryed almod (50gm)</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                            <i class="fa fa-star e-star"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$580.00 USD</span>
-                                            <span class="old-price"><del>$590.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-8.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-08.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-text">New</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Orange juice (5ltr)</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star b-star"></i>
-                                            <i class="fa fa-star b-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$93.00 USD</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-9.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-09.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-12%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Organic coconet (5ltr) juice</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$167.00 USD</span>
-                                            <span class="old-price"><del>$179.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-10.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-010.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-text">New</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Shrimp jumbo (5Lb)</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$230.00 USD</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-11.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-011.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-text">New</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Sp.red fresh guava</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$45.00 USD</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('product-details') }}">
-                                                <img class="img-fluid" src="{{ asset('assets/frontend') }}/image/pro/pro-img-12.jpg" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{ asset('assets/frontend') }}/image/pro/pro-img-012.jpg" alt="additional image">
-                                            </a>
-                                        </div>
-                                        <div class="Pro-lable">
-                                            <span class="p-discount">-25%</span>
-                                        </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a href="{{ route('product-details') }}">Fresh mussel (500g)</a></h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star d-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">$245.00 USD</span>
-                                            <span class="old-price"><del>$270.00 USD</del></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
+                                @endforeach
+                                @endisset
+                                 {{-- ------------------------Single Product End --}}
+
                             </div>
                         </section>
                         <!-- releted product end -->

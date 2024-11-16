@@ -6,6 +6,7 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\FaqController;
 use App\Http\Controllers\backend\GalleryController;
 use App\Http\Controllers\backend\GeneralSettingController;
+use App\Http\Controllers\backend\InvoiceController;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\ProfileController;
@@ -45,9 +46,17 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('orders')->name('orders.')->group(function () {
 
         Route::get('list', [OrderController::class, 'index'])->name('list');
-        Route::get('details', [OrderController::class, 'details'])->name('details');
+        Route::get('details/{id}', [OrderController::class, 'details'])->name('details')->where('id', '[0-9]+');
+        Route::get('change-status/{id}/value/{sl_id}', [OrderController::class, 'changeStatus'])->name('change.status')->where('id', '[0-9]+');
         Route::get('cart', [OrderController::class, 'cart'])->name('cart');
         Route::get('cheakout', [OrderController::class, 'cheakout'])->name('cheakout');
+        Route::get('destroy/{id}', [OrderController::class, 'destroy'])->name('destroy')->where('id', '[0-9]+');
+    });
+
+    // Invoice
+    Route::prefix('invoice')->name('invoice.')->group(function () {
+
+        Route::get('generate-pdf/{id}', [InvoiceController::class, 'generatePDF'])->name('generate.pdf')->where('id', '[0-9]+');
     });
 
     // Product
@@ -137,15 +146,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             Route::get('destroy/{id}', [SliderController::class, 'destroy'])->name('destroy');
         });
     });
-
-
-
-
-
-    //test Route
-    Route::any('test', [TestController::class, 'index'])->name('test');
-    Route::any('store', [TestController::class, 'store'])->name('store');
-
 
 
     Route::fallback(function () {

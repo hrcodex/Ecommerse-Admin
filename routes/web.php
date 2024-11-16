@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\frontend\ECOrderController;
 use App\Http\Controllers\frontend\websiteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,33 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-    return view('welcome');
-});
-
 // ---------------------------------
 Route::get('/', [websiteController::class, 'index'])->name('home');
 Route::get('shop', [websiteController::class, 'shop'])->name('shop');
-// ---------------------------------
-// Route::get('/', function () {
-//     $agent = new Agent();
-//     return view('frontend.pages.home.home', ['agent' => $agent]);
-// })->name('home');
-// Route::get('/shop', function () {
-//     return view('frontend.pages.shop.shop');
-// })->name('shop');
-Route::get('/product-details', function () {
-    return view('frontend.pages.product_details.product-details');
-})->name('product-details');
-Route::get('/cheakout', function () {
-    return view('frontend.pages.cheakout.cheakout');
-})->name('chackout');
-Route::get('/complet-buy', function () {
-    return view('frontend.pages.complete_order.complete-order');
-})->name('complete');
-// ---------------------------------
+Route::get('category/{id}', [websiteController::class, 'category'])->name('category')->where('id', '[0-9]+');
+Route::get('faq', [websiteController::class, 'faq'])->name('faq');
+Route::get('product-details/{id}', [ECOrderController::class, 'productDetails'])->name('product-details')->where('id', '[0-9]+');
+Route::get('product-details/{id}', [ECOrderController::class, 'productDetails'])->name('product-details')->where('id', '[0-9]+');
+Route::post('cheakout', [ECOrderController::class, 'cheakout'])->name('cheakout');
 
+Route::post('complete-cheakout/{product_id}', [ECOrderController::class, 'completeCheakout'])->name('complete.cheakout')->where('product_id', '[0-9]+');
 
+Route::get('search', [websiteController::class, 'search'])->name('search');
 Route::fallback(function () {
     return redirect()->back();
 });

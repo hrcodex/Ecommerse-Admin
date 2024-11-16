@@ -5,6 +5,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend') }}/css/responsive.css">
 @endsection
 @section('content')
+@php
+$order = DB::table('orders')->where('id', $order_id)->first();
+$order_address = DB::table('order_addresses')->where('order_id', $order_id)->first();
+@endphp
 <!-- Order complete start -->
 <section class="section-tb-padding">
     <div class="container">
@@ -14,12 +18,12 @@
                     <div class="order-price">
                         <ul class="total-order">
                             <li>
-                                <span class="order-no">Order no. 1724</span>
-                                <span class="order-date">23th jan 2021 3:04 pm</span>
+                                <span class="order-no">Order no. {{ $order->code }}</span>
+                                <span class="order-date">{{ $order->created_at }}</span>
                             </li>
                             <li>
                                 <span class="total-price">Order total</span>
-                                <span class="amount">$1199.00</span>
+                                <span class="amount">৳ {{ $order->amount }}</span>
                             </li>
                         </ul>
                     </div>
@@ -28,33 +32,31 @@
                         <h4>Thank you for order</h4>
                         <span class="order-s">Your order will ship within few hours</span>
 
-                        <a href="{{ route('home') }}" class="cart-calculate btn btn-style1-order-now" style="margin-top: 10px">Save Voucher</a>
+
+                        <a href="{{ route('home') }}" class="cart-calculate btn btn-style1-order-now" style="margin-top: 10px">Back To Home</a>
                     </div>
                     <div class="order-delivery">
                         <ul class="delivery-payment">
                             <li class="delivery">
                                 <h5>Delivery address</h5>
-                                <p>Lorem ipsum</p>
-                                <span class="order-span">7003 fairway street</span>
-                                <span class="order-span">New york</span>
-                                <span class="order-span">NY 10033</span>
-                                <span class="order-span">USA</span>
-                                <span class="order-span">Mobile no :+11-123456789</span>
+                                <p>{{ $order_address->address }}</p>
+
+                                <span class="order-span">Mobile no : {{ $order_address->phone }}</span>
                             </li>
                             <li class="pay">
                                 <h5>Payment summary</h5>
-                                <p class="transition">Transaction no : 66282856617</p>
+                                <p class="transition">Order No no : {{ $order->code }}</p>
                                 <span class="order-span p-label">
                                     <span class="n-price">Price</span>
-                                    <span class="o-price">$876.00</span>
+                                    <span class="o-price">৳ {{ $order->sub_total }}</span>
                                 </span>
                                 <span class="order-span p-label">
                                     <span class="n-price">Shipping charge</span>
-                                    <span class="o-price">$100.00</span>
+                                    <span class="o-price">৳ {{ $order->shipping_amount }}</span>
                                 </span>
                                 <span class="order-span p-label">
                                     <span class="n-price">Order Total</span>
-                                    <span class="o-price">$100.00</span>
+                                    <span class="o-price">৳ {{ $order->amount }}</span>
                                 </span>
                             </li>
                         </ul>

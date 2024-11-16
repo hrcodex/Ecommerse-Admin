@@ -1,26 +1,35 @@
+@php
+ $generalsettings =  DB::table('generalsettings')->first();
+@endphp
 <section class="offer-text-area section-t-padding">
     <div class="marquee-wrap">
         <div class="marquee1 offer-text-block">
             <ul>
                 {{-- Location --}}
+                @isset($generalsettings->address)
                 <li>
                     <div class="custom-text">
-                        <span>Location : <span class="n-text">5 no road,Monsurabad,Cgittagong</span> |</span>
+                        <span>Location : <span class="n-text">{{ $generalsettings->address }}</span> |</span>
                     </div>
                 </li>
+                @endisset
+
                 {{-- Phone --}}
+                @isset($generalsettings->phone)
                 <li>
                     <div class="custom-text">
-                        <span>Phone : <span class="n-text">01790370183</span> |</span>
+                        <span>Phone : <span class="n-text">{{ $generalsettings->phone }}</span> |</span>
                     </div>
                 </li>
+                @endisset
+
                 {{-- Email --}}
-                <li>
-                    <div class="custom-text">
-                        <span>Email : <span class="n-text">decorempression@gmail.com</span> |</span>
-                    </div>
-                </li>
+                @isset($generalsettings->email)
+
+                @endisset
+
                 {{-- Phone --}}
+
                 <li>
                     <div class="custom-text">
                         <span>Copyright @ <span class="n-text">2024 </span> HRCODEX Ltd. <span class="n-text">all rights reserved</span> |</span>
@@ -32,23 +41,32 @@
         <div class="marquee2 offer-text-block">
             <ul>
                 {{-- Location --}}
+                @isset($generalsettings->address)
                 <li>
                     <div class="custom-text">
-                        <span>Location : <span class="n-text">5 no road,Monsurabad,Cgittagong</span> |</span>
+                        <span>Location : <span class="n-text">{{ $generalsettings->address }}</span> |</span>
                     </div>
                 </li>
+                @endisset
+
                 {{-- Phone --}}
+                @isset($generalsettings->phone)
                 <li>
                     <div class="custom-text">
-                        <span>Phone : <span class="n-text">01790370183</span> |</span>
+                        <span>Phone : <span class="n-text">{{ $generalsettings->phone }}</span> |</span>
                     </div>
                 </li>
+                @endisset
+
                 {{-- Email --}}
+                @isset($generalsettings->email)
                 <li>
                     <div class="custom-text">
-                        <span>Email : <span class="n-text">decorempression@gmail.com</span> |</span>
+                        <span>Email : <span class="n-text">{{ $generalsettings->email }}</span> |</span>
                     </div>
                 </li>
+                @endisset
+
                 {{-- Phone --}}
                 <li>
                     <div class="custom-text">

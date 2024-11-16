@@ -9,7 +9,7 @@ $metaManagement = DB::table('meta_management')->where('id',1)->first();
     @endif
         @include('frontend.includes.meta')
         <!-- title -->
-        <title>Vegist - Multipurpose eCommerce HTML Template</title>
+        <title>@yield('title')</title>
 
        @include('frontend.includes.style')
        @yield('style')

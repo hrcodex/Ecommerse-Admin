@@ -14,7 +14,7 @@
                 <div class="col">
                     <div class="about-l">
                         <ul class="about-link">
-                            <li class="go-home"><a href="{{ route('home') }}">Home</a> | Shop </li>
+                            <li class="go-home"><a href="{{ route('home') }}">Home</a> | Category ({{ $categories_name->name }}) </li>
                         </ul>
                     </div>
                 </div>
@@ -33,18 +33,22 @@
                         <h4 class="filter-title">Categories</h4>
                         <a href="#category-filter" data-bs-toggle="collapse" class="filter-link"><span>Categories </span><i class="fa fa-angle-down"></i></a>
                         @isset($categories_shop)
+
+
                         <ul class="all-option collapse" id="category-filter">
 
                             @foreach ($categories_shop as $category)
-                            @php
-                                $Cat_counts = DB::table('products')->where('status', 'published')->where('category_id', $category->id)->get();
 
+                            @php
+                                $Cat_count = DB::table('products')->where('status', 'published')->where('category_id', $category->id)->get();
                             @endphp
+
 
                             <li class="grid-list-option">
 
-                                <a href="{{ route('category',['id'=>$category->id]) }}">{{ $category->name }} <span class="grid-items">({{ $Cat_counts->count() }})</span></a>
+                                <a href="{{ route('category',['id'=>$category->id]) }}">{{ $category->name }} <span class="grid-items">({{ $Cat_count->count() }})</span></a>
                             </li>
+
                             @endforeach
                         </ul>
                         @endisset
@@ -136,8 +140,9 @@
 
 
 
-                            @foreach ($products as $product)
 
+                            @isset($products)
+                            @foreach ($products as $product)
 
 
                             {{-- /single product Start------------------------------ --}}
@@ -145,11 +150,11 @@
                                 <div class="tred-pro" style="border-top: 1px solid #2277aa;border-left: 1px solid #2277aa;border-right: 1px solid #2277aa;margin: 0px;padding: 0px">
                                     <div class="tr-pro-img" >
                                         <a href="{{ route('product-details',['id'=>$product->id]) }}">
-                                            <img class="img-fluid" src="{{ asset($product->image) }}" alt="pro-img1">
+                                            <img class="img-fluid" src="{{ asset($product->image) }}" alt="img">
                                             @php
                                             $product_image_two = DB::table('product_images')->where('status', 'published')->where('product_id', $product->id)->first();
                                         @endphp
-                                            <img class="img-fluid additional-image" src="{{ asset($product_image_two->image) }}" alt="additional image">
+                                            <img class="img-fluid additional-image" src="{{ asset($product_image_two->image) }}" alt="img">
                                         </a>
 
                                     </div>
@@ -179,6 +184,8 @@
                              {{-- /single product End------------------------------ --}}
 
                              @endforeach
+                             @endisset
+
 
 
                         </ul>
